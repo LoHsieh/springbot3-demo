@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: http://localhost:3000/sitemap.xml
+
+# 不允許爬取的路徑
+Disallow: /api/
+Disallow: /admin/
+Disallow: /seller/

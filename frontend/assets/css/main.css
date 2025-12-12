@@ -1,0 +1,13 @@
+/* 覆蓋 Tailwind preflight 中的過時屬性 */
+html {
+  /* 使用現代標準屬性替代 -webkit-text-size-adjust */
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: none; /* 明確禁用 */
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+/* 確保文字大小調整使用標準屬性 */
+body {
+  text-size-adjust: 100%;
+}
