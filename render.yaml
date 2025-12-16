@@ -1,0 +1,50 @@
+services:
+  # Backend Service
+  - type: web
+    name: springbot3-backend
+    runtime: docker
+    repo: https://github.com/LoHsieh/springbot3-demo
+    rootDir: backend
+    plan: free
+    region: singapore
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: docker
+      - key: POSTGRES_DB
+        value: springbot_db
+      - key: POSTGRES_USER
+        value: postgres
+      - key: POSTGRES_PASSWORD
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: springbot3-db
+          property: connectionString
+    buildFilter:
+      paths:
+        - backend/**
+
+  # Frontend Service
+  - type: web
+    name: springbot3-frontend
+    runtime: docker
+    repo: https://github.com/LoHsieh/springbot3-demo
+    rootDir: frontend
+    plan: free
+    region: singapore
+    envVars:
+      - key: NUXT_PUBLIC_API_BASE
+        fromService:
+          type: web
+          name: springbot3-backend
+          property: url
+    buildFilter:
+      paths:
+        - frontend/**
+
+databases:
+  - name: springbot3-db
+    databaseName: springbot_db
+    user: postgres
+    plan: free
+    region: singapore

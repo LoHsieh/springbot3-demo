@@ -1,20 +1,15 @@
-FROM eclipse-temurin:21-jdk
-
+# Build stage
+FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
-
-# Copy Maven wrapper
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
-
-# Download dependencies (cached layer)
 RUN ./mvnw dependency:go-offline
-
-# Copy source code
 COPY src ./src
+RUN ./mvnw clean package -DskipTests
 
-# Expose application and debug ports
-EXPOSE 8080 5005
-
-# Run with Spring Boot DevTools for hot reload
-# Debug port enabled for remote debugging
-CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.jvmArguments=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"]
+# Run stage
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
