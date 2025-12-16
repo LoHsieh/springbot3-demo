@@ -35,11 +35,11 @@ services:
     plan: free
     region: singapore
     envVars:
-      - key: NUXT_PUBLIC_API_BASE
+      - key: NUXT_PUBLIC_API_HOST
         fromService:
           type: web
           name: springbot3-backend
-          property: url
+          property: host
     buildFilter:
       paths:
         - frontend/**
@@ -47,6 +47,6 @@ services:
 databases:
   - name: springbot3-db
     databaseName: springbot_db
-    user: postgres
+    user: springbot
     plan: free
     region: singapore
