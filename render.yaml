@@ -10,16 +10,18 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: docker
-      - key: POSTGRES_DB
-        value: springbot_db
-      - key: POSTGRES_USER
-        value: postgres
-      - key: POSTGRES_PASSWORD
-        generateValue: true
-      - key: DATABASE_URL
+      - key: SPRING_DATASOURCE_URL
         fromDatabase:
           name: springbot3-db
           property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: springbot3-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: springbot3-db
+          property: password
     buildFilter:
       paths:
         - backend/**
