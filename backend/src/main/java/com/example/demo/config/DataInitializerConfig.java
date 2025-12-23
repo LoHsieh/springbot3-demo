@@ -49,6 +49,7 @@ public class DataInitializerConfig {
                 product1.setPrice(new BigDecimal("999.99"));
                 product1.setStock(10);
                 product1.setSellerId(seller.getId());
+                product1.setImageUrl("/images/products/laptop.png");
                 productRepository.save(product1);
 
                 Product product2 = new Product();
@@ -57,6 +58,7 @@ public class DataInitializerConfig {
                 product2.setPrice(new BigDecimal("29.99"));
                 product2.setStock(50);
                 product2.setSellerId(seller.getId());
+                product2.setImageUrl("/images/products/mouse.png");
                 productRepository.save(product2);
 
                 Product product3 = new Product();
@@ -65,6 +67,7 @@ public class DataInitializerConfig {
                 product3.setPrice(new BigDecimal("79.99"));
                 product3.setStock(25);
                 product3.setSellerId(seller.getId());
+                product3.setImageUrl("/images/products/keyboard.png");
                 productRepository.save(product3);
 
                 Product product4 = new Product();
@@ -73,6 +76,7 @@ public class DataInitializerConfig {
                 product4.setPrice(new BigDecimal("49.99"));
                 product4.setStock(30);
                 product4.setSellerId(seller.getId());
+                product4.setImageUrl("/images/products/hub.png");
                 productRepository.save(product4);
 
                 // Create test coupons
