@@ -53,11 +53,17 @@
         >
           <!-- 商品圖片 -->
           <div 
-            class="h-48 bg-gray-200 flex items-center justify-center"
+            class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden"
             role="img"
             :aria-label="`${product.name} 的商品圖片`"
           >
-            <span class="text-gray-400 text-4xl" aria-hidden="true">📦</span>
+            <img 
+              v-if="product.imageUrl" 
+              :src="product.imageUrl" 
+              :alt="product.name"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <span v-else class="text-gray-400 text-4xl" aria-hidden="true">📦</span>
           </div>
           
           <!-- 商品資訊 -->

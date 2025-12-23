@@ -11,8 +11,14 @@
 
       <div v-else-if="product" class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="md:flex">
-          <div class="md:w-1/2 h-96 bg-gray-200 flex items-center justify-center">
-            <span class="text-gray-400 text-8xl">📦</span>
+          <div class="md:w-1/2 h-96 bg-gray-200 flex items-center justify-center overflow-hidden">
+            <img 
+              v-if="product.imageUrl" 
+              :src="product.imageUrl" 
+              :alt="product.name"
+              class="w-full h-full object-cover"
+            />
+            <span v-else class="text-gray-400 text-8xl">📦</span>
           </div>
 
           <div class="md:w-1/2 p-8">
@@ -72,11 +78,13 @@ definePageMeta({
   layout: 'default'
 })
 
+import type { Product } from '~/composables/useTypes'
+
 const route = useRoute()
 const api = useApi()
 const authStore = useAuthStore()
 
-const product = ref(null)
+const product = ref<Product | null>(null)
 const loading = ref(true)
 const error = ref('')
 const quantity = ref(1)
@@ -100,7 +108,7 @@ const addToCart = async () => {
 
   try {
     await api.post('/cart', {
-      productId: product.value.id,
+      productId: product.value?.id,
       quantity: quantity.value
     })
     successMessage.value = 'Added to cart successfully!'
