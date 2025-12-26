@@ -38,8 +38,10 @@
 
             <div v-if="authStore.isBuyer && product.stock > 0" class="space-y-4">
               <div class="flex items-center space-x-4">
-                <label class="text-sm font-medium text-gray-700">Quantity:</label>
+                <label for="quantity" class="text-sm font-medium text-gray-700">Quantity:</label>
                 <input
+                  id="quantity"
+                  name="quantity"
                   v-model.number="quantity"
                   type="number"
                   min="1"

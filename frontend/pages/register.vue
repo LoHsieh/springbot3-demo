@@ -17,6 +17,7 @@
               id="username"
               v-model="form.username"
               type="text"
+              autocomplete="username"
               required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
@@ -28,6 +29,7 @@
               id="email"
               v-model="form.email"
               type="email"
+              autocomplete="email"
               required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
@@ -39,6 +41,7 @@
               id="password"
               v-model="form.password"
               type="password"
+              autocomplete="new-password"
               required
               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
