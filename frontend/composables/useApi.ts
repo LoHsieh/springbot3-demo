@@ -7,6 +7,7 @@ export const useApi = () => {
 
     const api = axios.create({
         baseURL: config.public.apiBase as string,
+        timeout: 75000,
         headers: {
             'Content-Type': 'application/json'
         }
